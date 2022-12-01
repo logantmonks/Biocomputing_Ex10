@@ -24,3 +24,17 @@ ggplot(data=GameData, x="time", y="score")
 geom_smooth()
 
 #Question2
+
+ComputerNumber<-rnorm(n=1, mean=50, sd=3)
+For(i in Guess.csv){
+  if(i>ComputerNumber){
+    print("lower")
+  }else if(i<ComputerNumber){
+    print("higher")
+  }else if(i==ComputerNumber){
+      print("Correct!")
+    }
+}
+
+#How do I only pick integers??
+#How do I input guesses?
