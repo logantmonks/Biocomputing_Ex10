@@ -6,10 +6,10 @@
 GameData<-read.table("UWvMSU_1-22-13.txt", header=TRUE, sep="",stringsAsFactors=FALSE)
 
 # create variables to hold the team scores
-sumUW[1]<-0
-sumMSU[1]<-0
+sumUW<-0
+sumMSU<-0
 
-
+#Add the total/summed score at every time point for each team into the new vectors
 for(i in 1:nrow(GameData)){
   if(GameData$team[i]=="UW"){
    sumUW[i+1]<-sumUW[i]+GameData$score[i]
@@ -23,15 +23,22 @@ for(i in 1:nrow(GameData)){
   }
 }
 
+#Create a final data frame holding the time points and scores of each team at each time point
 FinalData<-data.frame(time=c(0, GameData$time),MSUscore=sumMSU, UWscore=sumUW)
-#how do I get the score for every time increment to show up???!!!ask
-
+#Create line graph based on final data frame with x axis being time points and y axis being the score for each team at each time point that a team scores 
 ggplot(data=FinalData, aes(x=time, y=UWscore))+
-#type of graph that we need
-geom_line(aes(x=time, y=UWscore))+
-geom_line(aes(x=time, y=MSUscore))
-#Question2
+#specify type of graph that we need
+#line graph to show scores throughout the game for each team(discrete)
+  #teams labeled by color
+geom_line(aes(x=time,y=UWscore,color="UW"))+
+geom_line(aes(x=time,y=MSUscore,color="MSU"))+
+  ylab("Scores")
 
+
+
+
+#Question2
+#
 ComputerNumber<-sample(x=1:100,size=1)
 
 word = readline(prompt="Guess")
