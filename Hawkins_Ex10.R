@@ -1,6 +1,6 @@
 ## Exercise 10 Hawkins
 
-##The plot that depicts the score from the UW vs MSU game
+
 results <- read.table("UWvMSU_1-22-13.txt", header = TRUE, sep = "\t")##Upload the file that contains the scores
 score_time<-results[,1] ## Creates a vector that is the first column of the data frame "results"
 score_length<-length(score_time) ## creates a variable that contains the length of the previously made vector
