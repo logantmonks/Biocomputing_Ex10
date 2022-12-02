@@ -1,0 +1,60 @@
+#Jaden Bailey
+#Exercise 10
+
+
+#Problem 1
+
+library(ggplot2)
+
+buckets <- read.table(file="UWvMSU_1-22-13.txt", header=TRUE, sep="")
+combinedscore <- data.frame(matrix(nrow=0, ncol=3))
+colnames(combinedscore) <- c("Time", "Wisco", "MichSt")
+
+wisco_score <- 0
+michst_score <- 0
+time <- 0
+index <- 1
+
+for (row in 1:nrow(buckets)){
+if (buckets$team[row] == "Wisco"){
+wisco_score <- wisco_score + buckets$score[row]
+}
+else {
+michst_score <- michst_score + buckets$score[row]
+}
+time <- buckets$time[row]
+combinedscore[index,] <- c(time, wisco_score, michst_score)
+
+index <- index +1
+}
+
+plot_color <- c("Wisco" = "red", "MichSt" = "green")
+
+ggplot() +
+geom_line(data=combinedscore, aes(x = Time, y = Wisco, color= "Wisco")) +
+geom_line(data = combinedscore, aes(x = Time, y = MichSt, color = "MichSt)) +
+ylab("Points Scored") +
+xlab("Time") +
+scale_color_manual(values = plot_color) +
+labs(color = "Teams")
+
+
+#Problem 2
+answer = sample(1:100, 1)
+guess <- readline("Can you guess the correct number 1-100?")
+count = 0
+
+for (i in 1:100){
+guess <- readline("Can you guess the correct number 1-100?")
+if (guess == answer){
+print("You Got It!!)
+break
+}
+else if (guess < answer){
+print("Too Low")
+}
+else if (guess > answer){
+print("Too high")
+}
+count = count + 1
+
