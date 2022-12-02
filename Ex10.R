@@ -38,38 +38,33 @@ geom_line(aes(x=time,y=MSUscore,color="MSU"))+
 
 
 #Question2
-#
+#Guess My Number Game
+#Computer generated random number between 1-100 stored as variable
 ComputerNumber<-sample(x=1:100,size=1)
 
-word = readline(prompt="Guess")
+#Prompt line to get input from user
+readline(prompt="Guess")
 
+#Baseline setting is that the user has not correctly answered yet
+Correct<-0
 
-Correct<-FALSE
-
-  
+#The user gets 10 guesses to guess the Computer's number
 for(i in 1:10){
-  if(Correct==FALSE){
+  if(Correct==0){
     #store guesses
     Answers<-as.numeric(readline(prompt="Guess"))
-    #incorrect baseline
-    #guess to begin with
-    #keep guessing if wrong/until right
-    
-    
+
+    #Gives the player feedback
     if(Answers>ComputerNumber){
       print("lower")
     }else if(Answers<ComputerNumber){
       print("higher")
     }else if(Answers==ComputerNumber){
       print("Correct!")
-      Correct==TRUE
+      #If the player guesses correctly, the computer terminates for
+      Correct==1
+      {break}
     }
   }
-  
-  
 
 }
-
-
-#How do I only pick integers??
-#How do I input guesses?
