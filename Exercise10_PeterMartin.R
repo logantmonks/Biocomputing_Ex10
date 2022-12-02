@@ -9,6 +9,11 @@ library(ggplot2)
 # generate a graph similar to the one I show above. Don’t worry about how pretty your graph is. 
 # Focus more on the control structures required in your script used to generate the plot.
 UWvMSU<-read.table(file="UWvMSU_1-22-13.txt",header=TRUE)
+UWinitialScore<-data.frame(time=0,team="UW",score=0)
+MSUinitialScore<-data.frame(time=0,team="MSU",score=0)
+UWvMSU<-rbind(UWinitialScore,UWvMSU)
+UWvMSU<-rbind(MSUinitialScore,UWvMSU)
+
 UW<-UWvMSU
 MSU<-UWvMSU
 
@@ -57,6 +62,4 @@ GuessMyNumber=function(){
     }
   }
 }
-
-
 
