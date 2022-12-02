@@ -5,7 +5,8 @@
 # First need to access the data
 scores <- read.table("UWvMSU_1-22-13.txt", header=TRUE)
 # Make data frame for the scores
-df <- data.frame(matrix(c("Time", "UWScore", "MSUScore")))
+df <- data.frame(Time, UWScore, MSUScore)
+
 #Set initial Values for the variables
 Time = 0
 UWScore = 0
@@ -19,6 +20,7 @@ for (x in 1:nrow(scores)){
     MSUScore = scores$score[x] + MSUScore
   }
   Time = scores$time[x]
+  df[nrow(df) + 1,] <- c(Time, UWScore, MSUScore)
 }
 
 # Load the ggplot and cowplot packages
@@ -27,10 +29,12 @@ library(cowplot)
 
 # makes the line plot to show scores throughout the game
 ggplot(data = df, aes(x = Time)) +
-  geom_line(data = df, aes(y = UWScore), color = "red") +
-  geom_line(data = df, aes(y = MSUScore), color = "black") +
-  theme_classic()
+  geom_line(aes(y = UWScore), color = "red") +
+  geom_line(aes(y = MSUScore), color = "green") +
+  theme_classic() +
+  ylab("Score") 
   
+
 
 
 
