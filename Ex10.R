@@ -34,9 +34,13 @@ ggplot(data = df, aes(x = Time)) +
   theme_classic() +
   ylab("Score") 
   
+# 2: Create a Game to guess a random number
 
-
-
+#First generate a random integer 1:100
+floor(runif(1, min = 1, max =100))
+# Print the starting line
+print("I'm thinking of a number 1-100...")
+# 
 
 
 
