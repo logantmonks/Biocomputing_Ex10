@@ -37,12 +37,28 @@ ggplot(data = df, aes(x = Time)) +
 # 2: Create a Game to guess a random number
 
 #First generate a random integer 1:100
-floor(runif(1, min = 1, max =100))
+numb <- floor(runif(1, min = 1, max =100))
 # Print the starting line
 print("I'm thinking of a number 1-100...")
-# 
+# create a for loop 1-10 to allow for 10 tries at the game
+# use if else statements to compare the input to the random number
+for (i in 1:10){
+  print("Guess: ")
+  guess = readline();
+  guess = as.integer(guess);
+  if(guess > numb){
+    print("Lower")
+    next;
+  }else if(guess < numb){
+    print("Higher")
+    next;
+  }else if(guess == numb){
+    print("Correct!")
+    break;
+  }
+}
 
-
+#Done
 
 
 
