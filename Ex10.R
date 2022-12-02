@@ -1,9 +1,42 @@
 # Ex10.R: A script to execute the problems outlined by Exercise 10
 # Assume you are in the Biocomputing_Ex10 directory
 
+# 1: Make a plot of the UW vs MSU score as a function of time
 # First need to access the data
 scores <- read.table("UWvMSU_1-22-13.txt", header=TRUE)
 # Make data frame for the scores
-df <- data.frame("Time", "UWScore", "MSUScore")
+df <- data.frame(matrix(c("Time", "UWScore", "MSUScore")))
+#Set initial Values for the variables
+Time = 0
+UWScore = 0
+MSUScore= 0
 
-df
+# Run a for loop to add up scores throughout the game
+for (x in 1:nrow(scores)){
+  if (scores$team[x] == "UW"){
+    UWScore = scores$score[x] + UWScore
+  } else{
+    MSUScore = scores$score[x] + MSUScore
+  }
+  Time = scores$time[x]
+}
+
+# Load the ggplot and cowplot packages
+library(ggplot2)
+library(cowplot)
+
+# makes the line plot to show scores throughout the game
+ggplot(data = df, aes(x = Time)) +
+  geom_line(data = df, aes(y = UWScore), color = "red") +
+  geom_line(data = df, aes(y = MSUScore), color = "black") +
+  theme_classic()
+  
+
+
+
+
+
+
+
+
+
